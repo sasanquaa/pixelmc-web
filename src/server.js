@@ -2,14 +2,18 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const app = express();
+const cors = require('cors');
 const proxy = require('express-http-proxy');
 const https = require('https');
 const fs = require('fs');
 const {Curl} = require('node-libcurl');
-
+app.use(cors());
 app.use(express.static(path.join(__dirname, '..', 'build')));
 //app.use(express.static(path.join(__dirname, '..', 'public')));
-app.use(bodyParser());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+app.use(bodyParser.json());
 app.use('/api', proxy('localhost:1337', {
   proxyReqPathResolver: function (req) {
     return req.url.split('/api').join();
@@ -94,6 +98,7 @@ app.post('/napthe/callback', function(req, res) {
 
 app.post('/napthe/submit', function(req, res) {
   var body2 = req.body;
+  console.log(body2);
   var url = API_URL.format(body2.mathe, body2.serial, body2.menhgia, body2.loaithe, body2.content);
 	const curl = new Curl()
 	curl.setOpt('URL', url)

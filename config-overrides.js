@@ -1,18 +1,34 @@
+const { override, addLessLoader, fixBabelImports } = require("customize-cra");
+const { getThemeVariables } = require("antd/dist/theme");
+const aliyunTheme = require("@ant-design/aliyun-theme");
+/*
 const { override, addLessLoader } = require('customize-cra');
 
 module.exports = override(
   addLessLoader({
     lessOptions: {
       javascriptEnabled: true,
-      modifyVars: {
-        '@font-family': 'Roboto',
-        '@back-top-color': ' #fff',
-        '@table-font-size': '13px',
-        '@btn-height-base': '35px',
-        '@input-height-base': '35px',
-        '@border-radius-base': '6px',
-        '@form-vertical-label-padding': '0px',
-      },
+      modifyVars: getThemeVariables({
+          dark: true,
+          compact: true
+      })
     },
   }),
+);
+*/
+
+module.exports = override(
+	fixBabelImports("import", {
+		libraryName: "antd",
+		libraryDirectory: "es",
+		style: true
+	}),
+	addLessLoader({
+		lessOptions: {
+			javascriptEnabled: true,
+			modifyVars: {...getThemeVariables({
+				compact: true
+			}),...aliyunTheme}
+		}
+	})
 );
