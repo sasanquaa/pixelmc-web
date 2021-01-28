@@ -1,10 +1,12 @@
 import React, { memo, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {chargeSubmit} from "./redux/action";
-import { Button, Modal, Form, Input, Row, Col, Select, Space, Typography } from "antd";
+import { chargeSubmit } from "./redux/action";
+import { Button, Modal, Form, Input, Row, Col, Select, Space, Typography, Menu } from "antd";
 import ChargeTable from "./components/ChargeTable";
 import _ from "lodash";
-import { FormItemStyled } from "./styled";
+import { FormItemStyled, MenuStyled } from "./styled";
+import QueueAnim from "rc-queue-anim";
+import { HistoryOutlined, CrownOutlined } from "@ant-design/icons";
 
 const { Option } = Select;
 
@@ -23,7 +25,7 @@ function BouncingBalls(props) {
 }
 
 function ChargePage() {
-    const dispatch = useDispatch();
+	const dispatch = useDispatch();
 	const {
 		loading: chargeSubmitLoading,
 		error: chargeSubmitError,
@@ -35,24 +37,35 @@ function ChargePage() {
 	const [serial, setSerial] = useState(null);
 	const [menhgia, setCardPrice] = useState(null);
 	const [loaithe, setCardType] = useState(null);
-    const [youtuber, setYoutuber] = useState(null);
-    const [updated, setUpdated]  = useState(false);
-    
+	const [youtuber, setYoutuber] = useState(null);
+	const [updated, setUpdated] = useState(false);
+
+	const [currentTable, setCurrentTable] = useState("0");
+
 	const content = () => time();
 	const onFinish = (values) => {
-        values = {...values, content: content()};
-        dispatch(chargeSubmit(values)).then((v) => {
-            setUpdated(!updated);
-        });
-    };
-    
-    useEffect(() => {
-    }, [dispatch]);
+		values = { ...values, content: content() };
+		dispatch(chargeSubmit(values)).then((v) => {
+			setUpdated(!updated);
+		});
+	};
+	const onMenuClick = (e) => {
+		setCurrentTable(e.key);
+	};
+
+	useEffect(() => {}, [dispatch]);
 
 	return (
 		<Form onFinish={onFinish} className="charge" style={{ alignItems: "normal" }}>
-			<Row gutter={[12, 0]} justify="start" style={{ justifyContent: "center" }}>
-				<Col span={6} style={{ backgroundColor: "whitesmoke", padding: "25px 30px", borderRadius: 10 }}>
+			<QueueAnim
+				type="alpha"
+				animConfig={{ translateY: [0, -50] }}
+				delay={350}
+				component={Row}
+				componentProps={{ gutter: [12, 0], justify: "start" }}
+			>
+				<Col span={2}></Col>
+				<Col key="1" span={6} style={{ backgroundColor: "whitesmoke", padding: "25px 30px", borderRadius: 10 }}>
 					<Typography.Paragraph style={{ textAlign: "center" }}>
 						<Typography.Title style={{ marginBottom: 2 }} level={3}>
 							Điền vào thông tin
@@ -100,7 +113,13 @@ function ChargePage() {
 							<Option value="Viettel">Viettel</Option>
 						</Select>
 					</FormItemStyled>
-					<FormItemStyled name="youtuber" style={{ marginBottom: 16 }} label="Code" labelCol={{ md: 24 }} labelAlign="left">
+					<FormItemStyled
+						name="youtuber"
+						style={{ marginBottom: 16 }}
+						label="Code"
+						labelCol={{ md: 24 }}
+						labelAlign="left"
+					>
 						<Select onChange={setYoutuber} placeholder="Chọn code">
 							<Option value="Kass">Kass</Option>
 							<Option value="TL">TL</Option>
@@ -108,13 +127,21 @@ function ChargePage() {
 						</Select>
 					</FormItemStyled>
 					<FormItemStyled style={{ textAlign: "center" }}>
-						<Button loading={chargeSubmitLoading} type="primary" htmlType="submit">Nạp thẻ</Button>
+						<Button loading={chargeSubmitLoading} type="primary" htmlType="submit">
+							Nạp thẻ
+						</Button>
 					</FormItemStyled>
 				</Col>
-				<Col span={14}>
-					<ChargeTable />
+				<Col key="2" span={14}>
+					<Space direction="vertical" align="start" style={{ verticalAlign: "top", paddingLeft: 15 }}>
+						<MenuStyled onClick={onMenuClick} selectedKeys={[currentTable]} mode="horizontal">
+							<Menu.Item icon={<HistoryOutlined/>} key="0">Lịch sử giao dịch</Menu.Item>
+							<Menu.Item icon={<CrownOutlined/>} key="1">Top tài phú</Menu.Item>
+						</MenuStyled>
+						<ChargeTable />
+					</Space>
 				</Col>
-			</Row>
+			</QueueAnim>
 		</Form>
 	);
 }

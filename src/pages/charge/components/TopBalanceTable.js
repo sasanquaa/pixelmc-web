@@ -11,7 +11,11 @@ function formatNumber(num) {
 	return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
 }
 
-function ChargeTable() {
+function summary() {
+
+}
+
+function TopChargeTable() {
 	const dispatch = useDispatch();
 	const {
 		loading: getTransactionsLoading,
@@ -30,59 +34,17 @@ function ChargeTable() {
 			dataIndex: "username",
 			width: 150,
 			render: (username) => <Typography.Link>{username}</Typography.Link>
-		},
-		{
-			title: "Loại thẻ",
-			dataIndex: "cardType",
-			width: 100,
-			render: (cardType) => <Tag color="orange">{cardType}</Tag>
-		},
-		{
-			title: "Mệnh giá",
-			dataIndex: "cardValue",
-			width: 120,
-			render: (v) => `${formatNumber(v.substr(1))} VNĐ`
-		},
-		{
-			title: "Số serial",
-			dataIndex: "cardSerial",
-			width: 140
-		},
-		{
-			title: "Trạng thái",
-			dataIndex: "cardStatus",
-			width: 150,
-			render: (s) => {
-				switch (s) {
-					case "pending":
-						return <Tag color="processing">Đang xử lý</Tag>;
-					case "success":
-						return <Tag color="success">Nạp thành công</Tag>;
-					case "invalid":
-						return <Tag color="red">Sai mệnh giá</Tag>;
-					case "failure":
-						return <Tag color="error">Nạp thất bại</Tag>;
-					case "error":
-						return <Tag color="warning">Lỗi hệ thống</Tag>;
-				}
-			}
-		},
-		{
-			title: "Thời gian",
-			dataIndex: "datetime",
-			render: (datetime) => moment(datetime).format("DD-MM-YYYY HH:mm:ss")
-		},
-		{
-			title: "Code",
-			dataIndex: "youtuber",
-			width: 80
-		}
+        },
+        {
+            title: "Số tiền",
+            dataIndex: "charged"
+        }
 	];
 
 	useEffect(() => {
 		dispatch(
 			getTransactions({
-				_sort: "id:desc"
+                limit: -1
 			})
 		);
 	}, [dispatch]);
@@ -95,11 +57,9 @@ function ChargeTable() {
 			columns={columns}
 			loading={getTransactionsLoading}
 			dataSource={getTransactionsData}
-			pagination={{
-				simple: true
-			}}
+			pagination={false}
 		/>
 	);
 }
 
-export default memo(ChargeTable);
+export default memo(TopChargeTable);
