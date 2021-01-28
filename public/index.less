@@ -24,27 +24,28 @@ span {
 }
 
 .ant-table-body::-webkit-scrollbar {
-    width: 4px;
-    height: 5px;
+	width: 4px;
+	height: 5px;
 }
 .ant-table-body::-webkit-scrollbar-thumb {
 	background-color: rgb(170, 182, 235);
 }
 
 .ant-pagination-item-ellipsis {
-    color: white;
+	color: white;
 }
 
-.ant-pagination-next, .ant-pagination-prev {
-    background-color: white;
+.ant-pagination-next,
+.ant-pagination-prev {
+	background-color: white;
 }
 
 .ant-pagination-simple-pager {
-    color: white;
+	color: white;
 }
 
 .ant-pagination-simple-pager > input {
-    color: black;
+	color: black;
 }
 
 button {
@@ -72,7 +73,6 @@ button {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-
 }
 
 @media only screen and (max-width: 600px) {
@@ -436,5 +436,27 @@ body {
 .ant-modal-body {
 	p {
 		color: rgb(23, 23, 26);
+	}
+}
+
+.rgb-text {
+	animation: rgb 2s ease-in-out 0s infinite;
+}
+
+@keyframes rgb {
+	from {
+		color: #6666ff;
+	}
+	10% {
+		color: #0099ff;
+	}
+	50% {
+		color: #00ff00;
+	}
+	75% {
+		color: #ff3399;
+	}
+	100% {
+		color: #6666ff;
 	}
 }

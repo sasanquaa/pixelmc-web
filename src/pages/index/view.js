@@ -101,14 +101,14 @@ function IndexPage() {
 										size="large"
 										type="ghost"
                                         href="https://discord.gg/C7r24E5SVR"
-                                        icon={<Icon component={DiscordSvg} style={{fontSize: 18, marginBottom: 2}}/>}
+                                        icon={<Icon component={DiscordSvg} style={{fontSize: 24}}/>}
 									>
 										Discord
 									</Button>
 								</Col>
 								<Col key="2" span={4}>
 									<Button
-										icon={<CreditCardOutlined />}
+										icon={<CreditCardOutlined style={{fontSize: 20, verticalAlign: "middle"}}/>}
 										block
 										size="large"
 										type="ghost"
@@ -122,12 +122,12 @@ function IndexPage() {
 								</Col>
 								<Col key="3" span={4}>
 									<Button
+										icon={<HeartOutlined style={{fontSize: 20, verticalAlign: "middle"}} />}
 										block
 										size="large"
 										type="primary"
 										onClick={onModalShowing}
 										type="primary"
-										icon={<HeartOutlined />}
 									>
 										Chơi game
 									</Button>
@@ -161,8 +161,8 @@ function IndexPage() {
 					</QueueAnim>
 				</div>
 			</Content>
-			<Footer style={{ backgroundColor: "transparent" }}>
-				<QueueAnim component={Row} type={["left", "right"]} delay={1200} componentProps={{ gutter: [12, 0] }}>
+			<Footer style={{ backgroundColor: "transparent", width: 200 }}>
+				<QueueAnim component={Row} type="left" delay={1200} componentProps={{ gutter: [12, 0]}}>
 					<Col key="1" span={12}>
 						<Button
 							style={{ fontSize: 36, width: 40, height: 40 }}

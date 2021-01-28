@@ -18,4 +18,12 @@ export const TableRounded = styled(Table)`
         border-top-left-radius: ${borderRadius}px;
         border-top-right-radius: ${borderRadius}px;
     }
+
+    .ant-table-thead > tr > .ant-table-cell:first-child {
+        border-top-left-radius: ${borderRadius}px!important;
+    } 
+
+    .ant-table-thead > tr > .ant-table-cell:last-child {
+        border-top-right-radius: ${borderRadius}px!important;
+    } 
 `;

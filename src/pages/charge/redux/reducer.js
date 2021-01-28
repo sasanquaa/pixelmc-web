@@ -3,11 +3,17 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
 	chargeSubmit: {
 		loading: false,
-        error: null,
+		error: null,
 		success: false
 	},
 
 	getTransactions: {
+		loading: false,
+		error: null,
+		data: []
+	},
+
+	getTransactionTops: {
 		loading: false,
 		error: null,
 		data: []
@@ -34,13 +40,27 @@ const chargeSlice = createSlice({
 			getTransactions.error = payload.message;
 		},
 
+		getTransactionTopsRequest: ({ getTransactionTops }) => {
+			getTransactionTops.loading = true;
+		},
+
+		getTransactionTopsSuccess: ({ getTransactionTops }, { payload }) => {
+			getTransactionTops.loading = false;
+			getTransactionTops.data = payload.data;
+		},
+
+		getTransactionTopsFailure: ({ getTransactionTops }, { payload }) => {
+			getTransactionTops.loading = false;
+			getTransactionTops.error = payload.message;
+		},
+
 		chargeSubmitRequest: ({ chargeSubmit }) => {
 			chargeSubmit.loading = true;
 		},
 
 		chargeSubmitSuccess: ({ chargeSubmit }, { payload }) => {
 			chargeSubmit.loading = false;
-            chargeSubmit.success = true;
+			chargeSubmit.success = true;
 		},
 
 		chargeSubmitError: ({ chargeSubmit }, { payload }) => {

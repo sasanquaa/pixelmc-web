@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { chargeSubmit } from "./redux/action";
 import { Button, Modal, Form, Input, Row, Col, Select, Space, Typography, Menu } from "antd";
 import ChargeTable from "./components/ChargeTable";
+import TopBalanceTable from "./components/TopBalanceTable";
 import _ from "lodash";
 import { FormItemStyled, MenuStyled } from "./styled";
 import QueueAnim from "rc-queue-anim";
@@ -53,19 +54,31 @@ function ChargePage() {
 		setCurrentTable(e.key);
 	};
 
-	useEffect(() => {}, [dispatch]);
+    useEffect(() => {}, [dispatch]);
+    
+    var table;
+    switch(currentTable) {
+        case "0":
+            table = <ChargeTable/>;
+            break;
+        case "1":
+            table = <TopBalanceTable/>;
+            break;
+        default:
+            break;
+    }
 
 	return (
 		<Form onFinish={onFinish} className="charge" style={{ alignItems: "normal" }}>
 			<QueueAnim
 				type="alpha"
 				animConfig={{ translateY: [0, -50] }}
-				delay={350}
+				delay={400}
 				component={Row}
 				componentProps={{ gutter: [12, 0], justify: "start" }}
 			>
 				<Col span={2}></Col>
-				<Col key="1" span={6} style={{ backgroundColor: "whitesmoke", padding: "25px 30px", borderRadius: 10 }}>
+				<Col key="1" span={6} style={{ backgroundColor: "whitesmoke", padding: "25px 30px", borderRadius: 10, minHeight: 620 }}>
 					<Typography.Paragraph style={{ textAlign: "center" }}>
 						<Typography.Title style={{ marginBottom: 2 }} level={3}>
 							Điền vào thông tin
@@ -138,7 +151,7 @@ function ChargePage() {
 							<Menu.Item icon={<HistoryOutlined/>} key="0">Lịch sử giao dịch</Menu.Item>
 							<Menu.Item icon={<CrownOutlined/>} key="1">Top tài phú</Menu.Item>
 						</MenuStyled>
-						<ChargeTable />
+                        {table}
 					</Space>
 				</Col>
 			</QueueAnim>
