@@ -7,5 +7,5 @@ export const isDev = process.env.NODE_ENV === "production";
 export const API_URL = "https://pixelmc.vn/api";
 export const API_PATHS = {
     TRANSACTION: urljoin(API_URL, "transactions"),
-    CHARGE: urljoin("https://localhost", "napthe", "submit")
+    CHARGE: urljoin("https://pixelmc.vn", "napthe", "submit")
 };

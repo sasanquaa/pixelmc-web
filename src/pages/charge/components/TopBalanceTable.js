@@ -26,8 +26,8 @@ function TopBalanceTable() {
             width: 80,
             render: (id) => {
                 return id < 5 ? 
-                    <Typography.Link className="rgb-text" style={{marginBottom: 0, fontSize: 14, fontWeight: 600}}>{id}</Typography.Link> :
-                    <Typography.Link style={{marginBottom: 0, fontSize: 14}}>{id}</Typography.Link>;
+                    <Typography.Link className="rgb-text" style={{marginBottom: 0, fontSize: 14, fontWeight: 600}}>{id + 1}</Typography.Link> :
+                    <Typography.Link style={{marginBottom: 0, fontSize: 14}}>{id + 1}</Typography.Link>;
             },
             style: {
                 borderRadius: 15

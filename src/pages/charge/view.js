@@ -100,16 +100,16 @@ function ChargePage() {
 						</Typography.Paragraph>
 					</Typography.Paragraph>
 
-					<FormItemStyled name="username" label="Tên in-game" labelCol={{ md: 24 }} labelAlign="left">
+					<FormItemStyled name="username" label="Tên in-game" labelCol={{ md: 24 }} labelAlign="left" rules={[{required: true, message: "Bạn cần nhập vào tên in-game."}]}>
 						<Input onChange={setUsername} />
 					</FormItemStyled>
-					<FormItemStyled name="mathe" label="Mã thẻ" labelCol={{ md: 24 }} labelAlign="left">
+					<FormItemStyled name="mathe" label="Mã thẻ" labelCol={{ md: 24 }} labelAlign="left" rules={[{required: true, message: "Bạn cần nhập vào mã thẻ."}]}>
 						<Input onChange={setCardCode} />
 					</FormItemStyled>
-					<FormItemStyled name="serial" label="Số serial thẻ" labelCol={{ md: 24 }} labelAlign="left">
+					<FormItemStyled name="serial" label="Số serial thẻ" labelCol={{ md: 24 }} labelAlign="left" rules={[{required: true, message: "Bạn cần nhập vào số serial thẻ."}]}>
 						<Input onChange={setSerial} />
 					</FormItemStyled>
-					<FormItemStyled name="menhgia" label="Mệnh giá" labelCol={{ md: 24 }} labelAlign="left">
+					<FormItemStyled name="menhgia" label="Mệnh giá" labelCol={{ md: 24 }} labelAlign="left" rules={[{required: true, message: "Bạn cần chọn 1 mệnh giá."}]}>
 						<Select onChange={setCardPrice} placeholder="Chọn mệnh giá">
 							<Option value="10000">10.000 VNĐ</Option>
 							<Option value="20000">20.000 VNĐ</Option>
@@ -119,7 +119,7 @@ function ChargePage() {
 							<Option value="500000">500.000 VNĐ</Option>
 						</Select>
 					</FormItemStyled>
-					<FormItemStyled name="loaithe" label="Loại thẻ" labelCol={{ md: 24 }} labelAlign="left">
+					<FormItemStyled name="loaithe" label="Loại thẻ" labelCol={{ md: 24 }} labelAlign="left" rules={[{required: true, message: "Bạn cần chọn 1 loại thẻ."}]}>
 						<Select onChange={setCardType} placeholder="Chọn loại thẻ">
 							<Option value="Mobifone">Mobifone</Option>
 							<Option value="Vinaphone">Vinaphone</Option>
@@ -131,9 +131,10 @@ function ChargePage() {
 						style={{ marginBottom: 16 }}
 						label="Code"
 						labelCol={{ md: 24 }}
-						labelAlign="left"
+                        labelAlign="left"
+                        rules={[{required: true, message: "Hãy chọn 1 code."}]}
 					>
-						<Select onChange={setYoutuber} placeholder="Chọn code">
+						<Select onChange={setYoutuber} placeholder="Chọn code" >
 							<Option value="Kass">Kass</Option>
 							<Option value="TL">TL</Option>
 							<Option value="Noxuss">Noxuss</Option>
