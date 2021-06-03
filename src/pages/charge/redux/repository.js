@@ -21,6 +21,15 @@ async function getTransactionTops(payload) {
     }
 }
 
+async function getTransactionTopsByMonth(payload) {
+    try {
+        const response = await Request.GET({path: urljoin(API_PATHS.TRANSACTION, "top-by-month"), payload: payload});
+        return response;
+    }catch(err) {
+        return err;
+    }
+}
+
 async function chargeSubmit(payload) {
     try {
         const response = await Request.POST({path: API_PATHS.CHARGE, payload: payload});
@@ -33,6 +42,7 @@ async function chargeSubmit(payload) {
 const Repository = {
     getTransactions,
     getTransactionTops,
+    getTransactionTopsByMonth,
     chargeSubmit
 };
 

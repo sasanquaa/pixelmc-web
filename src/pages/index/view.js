@@ -100,7 +100,7 @@ function IndexPage() {
 										block
 										size="large"
 										type="ghost"
-                                        href="https://discord.gg/C7r24E5SVR"
+                                        href="https://discord.gg/MWeNeRtscp"
                                         icon={<Icon component={DiscordSvg} style={{fontSize: 24}}/>}
 									>
 										Discord
@@ -129,7 +129,7 @@ function IndexPage() {
 										onClick={onModalShowing}
 										type="primary"
 									>
-										Chơi game
+										Tải game
 									</Button>
 								</Col>
 								<Col span={6}></Col>
@@ -144,8 +144,14 @@ function IndexPage() {
 									visible={modalVisible}
 								>
 									<Typography.Paragraph>
-										1. Tải launcher để tải mods tự động
-										<Typography.Link href="https://drive.google.com/u/0/uc?export=download&confirm=YoeM&id=1-HWmtCjJq8N_gK2fqnsQJUN-SQSIhTub">
+										1.a Tải launcher để tải mods tự động
+										<Typography.Link href="https://github.com/sasanquaa/pixelmc-launcher/releases/download/v1.1.11/Pixel-Launcher-Setup-1.1.11.exe">
+											<DownloadOutlined style={{ fontSize: 15, paddingLeft: 5 }} />
+										</Typography.Link>
+									</Typography.Paragraph>
+									<Typography.Paragraph>
+										1.b Bản 32-bit
+										<Typography.Link href="https://drive.google.com/file/d/1-ufBFsh84IVgBwbHJakI-rixfRVrRztJ/view">
 											<DownloadOutlined style={{ fontSize: 15, paddingLeft: 5 }} />
 										</Typography.Link>
 									</Typography.Paragraph>

@@ -19,6 +19,7 @@
     "decimal.js": "^10.2.1",
     "express": "^4.17.1",
     "express-http-proxy": "^1.6.2",
+    "express-session": "^1.17.1",
     "firebase": "^8.1.1",
     "i18n-js": "^3.8.0",
     "jquery": "^3.5.1",

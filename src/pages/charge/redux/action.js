@@ -44,6 +44,19 @@ export function getTransactionTops(payload) {
 	};
 }
 
+export function getTransactionTopsByMonth(payload) {
+    return async (dispatch) => {
+        dispatch(ChargeAction.getTransactionTopsByMonthRequest());
+        const { data, message, statusCode } = await Repository.getTransactionTopsByMonth(payload);
+		if (statusCode || message) {
+			dispatch(ChargeAction.getTransactionTopsByMonthFailure({ message }));
+			notifyError(message);
+			return;
+		}
+		dispatch(ChargeAction.getTransactionTopsByMonthSuccess({ data }));
+    };
+}
+
 export function chargeSubmit(payload) {
 	return async (dispatch) => {
 		dispatch(ChargeAction.chargeSubmitRequest());

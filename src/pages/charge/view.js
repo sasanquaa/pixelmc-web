@@ -113,10 +113,13 @@ function ChargePage() {
 						<Select onChange={setCardPrice} placeholder="Chọn mệnh giá">
 							<Option value="10000">10.000 VNĐ</Option>
 							<Option value="20000">20.000 VNĐ</Option>
+							<Option value="30000">30.000 VNĐ</Option>
 							<Option value="50000">50.000 VNĐ</Option>
 							<Option value="100000">100.000 VNĐ</Option>
 							<Option value="200000">200.000 VNĐ</Option>
+							<Option value="300000">300.000 VNĐ</Option>
 							<Option value="500000">500.000 VNĐ</Option>
+							<Option value="1000000">1.000.000 VNĐ</Option>
 						</Select>
 					</FormItemStyled>
 					<FormItemStyled name="loaithe" label="Loại thẻ" labelCol={{ md: 24 }} labelAlign="left" rules={[{required: true, message: "Bạn cần chọn 1 loại thẻ."}]}>

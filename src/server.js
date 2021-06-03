@@ -4,9 +4,15 @@ const path = require('path');
 const app = express();
 const cors = require('cors');
 const proxy = require('express-http-proxy');
+const session = require('express-session');
 const https = require('https');
 const fs = require('fs');
 const {Curl} = require('node-libcurl');
+
+app.use(session({
+    secret: "SDAASNDASO15151j2donoaSNAOSNDASNd",
+    cookie: {secure: true, maxAge: 30000}
+}));
 app.use(cors());
 app.use(express.static(path.join(__dirname, '..', 'build')));
 //app.use(express.static(path.join(__dirname, '..', 'public')));
@@ -97,6 +103,14 @@ app.post('/napthe/callback', function(req, res) {
 });
 
 app.post('/napthe/submit', function(req, res) {
+
+  if(req.session.cooldown) {
+      req.session.cookie.expires = new Date(Date.now() + req.session.cookie.maxAge);
+      return res.send({message: `Bạn đang nạp thẻ quá nhanh! Hãy đợi ${parseInt(req.session.cookie.maxAge / 1000)} giây nữa!`})
+  }else {
+      req.session.cooldown = true;
+  }
+
   var body2 = req.body;
   console.log(body2);
   var url = API_URL.format(body2.mathe, body2.serial, body2.menhgia, body2.loaithe, body2.content);

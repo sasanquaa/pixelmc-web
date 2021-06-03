@@ -17,7 +17,13 @@ const initialState = {
 		loading: false,
 		error: null,
 		data: []
-	}
+    },
+    
+    getTransactionTopsByMonth: {
+        loading: false,
+        error: null,
+        data: {}
+    }
 };
 
 const chargeSlice = createSlice({
@@ -52,6 +58,20 @@ const chargeSlice = createSlice({
 		getTransactionTopsFailure: ({ getTransactionTops }, { payload }) => {
 			getTransactionTops.loading = false;
 			getTransactionTops.error = payload.message;
+        },
+        
+		getTransactionTopsByMonthRequest: ({ getTransactionTopsByMonth }) => {
+			getTransactionTopsByMonth.loading = true;
+		},
+
+		getTransactionTopsByMonthSuccess: ({ getTransactionTopsByMonth }, { payload }) => {
+			getTransactionTopsByMonth.loading = false;
+			getTransactionTopsByMonth.data = payload.data;
+		},
+
+		getTransactionTopsByMonthFailure: ({ getTransactionTopsByMonth }, { payload }) => {
+			getTransactionTopsByMonth.loading = false;
+			getTransactionTopsByMonth.error = payload.message;
 		},
 
 		chargeSubmitRequest: ({ chargeSubmit }) => {
